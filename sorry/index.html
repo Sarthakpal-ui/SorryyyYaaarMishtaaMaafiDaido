@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I am SORRY, Anu</title>
+    <link rel="shortcut icon" href="favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/lnu1fpi.css">
+    <link rel="stylesheet" type="text/css" href="css/base.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>document.documentElement.className = "js";</script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .heading {
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-family: 'Caveat', cursive;
+            color: #FFB3C6;
+            letter-spacing: 0.02em;
+        }
+
+        body {
+            position: relative;
+            overflow: auto;
+        }
+
+        #bgFill {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background-color: #FF6B8A;
+            z-index: -1;
+            transition: height 1s ease-in-out;
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* hero section centered nicely */
+        #section1 {
+            flex-direction: column;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: #FF6B8A;
+            font-weight: 700;
+            line-height: 1.1;
+            text-align: center;
+        }
+
+        .hero-sub {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            color: #888;
+            text-align: center;
+            cursor: pointer;
+            padding: 0.5rem 2rem;
+            border: 2px solid #FF6B8A;
+            border-radius: 50px;
+            background: rgba(255, 107, 138, 0.07);
+            transition: background 0.3s;
+        }
+
+        .hero-sub:hover {
+            background: rgba(255, 107, 138, 0.18);
+        }
+
+        @keyframes wave {
+            0%   { transform: translateX(0); }
+            50%  { transform: translateX(-25%); }
+            100% { transform: translateX(0); }
+        }
+
+        .wave {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 200%;
+            height: 100px;
+            background: rgba(255, 107, 138, 0.5);
+            opacity: 0.7;
+            border-radius: 50%;
+            animation: wave 4s infinite linear;
+        }
+
+        .wave.wave1 { animation-delay: 0s;  opacity: 1; }
+        .wave.wave2 { animation-delay: -2s; opacity: 0.5; }
+
+        /* letter paragraphs in Caveat handwriting font */
+        .blur-text,
+        .blur-text--2 {
+            font-family: 'Caveat', cursive !important;
+            font-variation-settings: normal !important;
+            font-size: clamp(2rem, 4.5vw, 2.8rem) !important;
+            line-height: 1.4 !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.02em !important;
+        }
+
+        /* gif row captions */
+        .gif-caption {
+            font-family: 'Caveat', cursive;
+            font-size: 1.4rem;
+            color: #FFB3C6;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+
+        /* signature */
+        .signature {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            text-align: center;
+            color: #FF6B8A;
+            margin-top: 4rem;
+            margin-bottom: 5rem;
+        }
+
+        /* hearts floating decoration */
+        @keyframes floatHeart {
+            0%   { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-80px) scale(1.3); opacity: 0; }
+        }
+
+        .floating-hearts span {
+            position: fixed;
+            bottom: 60px;
+            font-size: 1.5rem;
+            animation: floatHeart 2s ease-out forwards;
+            pointer-events: none;
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <div id="bgFill">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+    </div>
+
+    <div id="floating-hearts" class="floating-hearts"></div>
+
+    <!-- SECTION 1: Hero / Start screen -->
+    <div id="section1" class="section">
+        <div class="hero-title">I have something<br>to say to you, Anu...</div>
+        <button class="hero-sub" onclick="startLetter()">tap to open my letter 💌</button>
+    </div>
+
+    <!-- SECTION 2: The apology letter -->
+    <section class="content" id="section2">
+        <div class="flex flex-col items-center justify-center bg-black p-4 md:p-10 rounded-xl">
+
+            <!-- Animated "I'M SORRY" heading -->
+            <h1 class="playful hidden md:block" aria-label="I am sorry">
+                <span aria-hidden="true">I</span>
+                <span aria-hidden="true"> </span>
+                <span aria-hidden="true"> </span>
+                <span aria-hidden="true">M</span>
+                <span aria-hidden="true"> </span>
+                <span aria-hidden="true">S</span>
+                <span aria-hidden="true">O</span>
+                <span aria-hidden="true">R</span>
+                <span aria-hidden="true">R</span>
+                <span aria-hidden="true">Y</span>
+                <span aria-hidden="true">!</span>
+            </h1>
+            <h1 class="playful block md:hidden flex flex-col" aria-label="I am sorry">
+                <span aria-hidden="true">I</span>
+                <span aria-hidden="true"> </span>
+                <span aria-hidden="true"> </span>
+                <span aria-hidden="true">M</span>
+                <span aria-hidden="true"> </span>
+                <span aria-hidden="true">S</span>
+                <span aria-hidden="true">O</span>
+                <span aria-hidden="true">R</span>
+                <span aria-hidden="true">R</span>
+                <span aria-hidden="true">Y</span>
+                <span aria-hidden="true">!</span>
+            </h1>
+
+            <!-- Dear Anu + sad teddy -->
+            <div class="min-h-screen flex flex-col items-center justify-center">
+                <h1 class="heading animate-pulse">Dear Anu,</h1>
+                <img src="assests/sad-teddy.gif" class="mb-10 w-48 h-48" alt="sad teddy" onclick="sadTeddyClick()">
+                <p class="gif-caption">this is me right now...</p>
+            </div>
+
+            <!-- Para 1 -->
+            <div class="blur-text blur-text--2" data-effect-2>
+                I need to say sorry, properly. Not a quick "sorry" in a text, but a real one. Because you deserve that. You deserve so much more than what I gave you this past year.
+            </div>
+
+            <!-- Para 2 - the actual story -->
+            <div class="blur-text blur-text--2 mt-10" data-effect-2>
+                I lied to you. About something personal. And I kept lying to cover that first lie, for over a year. The whole time, I watched you overthink, I watched you hurt yourself over something that was not even real, and I kept it going anyway because I was too scared to face what would happen if I told you. That is the part I hate the most about myself right now.
+            </div>
+
+            <!-- Para 2b - the moment of telling the truth -->
+            <div class="blur-text blur-text--2 mt-10" data-effect-2>
+                Yesterday night when I finally said it, my eyes were watery. I was crying so hard. Not because I was scared of what you would think, but because I could not stand watching you carry all that overthinking for one more day because of a lie I told. I did not want to keep hurting you. I could not. So I said it. I do not know where I found the courage, honestly. But I think it was you. It is always you. You are my strength, Anu. Even when I am at my worst, even when I am the one who messed up, somehow you are still the reason I do the right thing.
+            </div>
+
+            <!-- Teddy walking gif -->
+            <div class="mt-10 mb-5 flex flex-col items-center justify-center">
+                <img src="assests/teddy-walking.gif" alt="teddy walking" class="rounded-xl w-48 h-48" onclick="teddyClick()">
+            </div>
+            <p class="gif-caption">i kept walking away from the truth, and that was wrong</p>
+
+            <!-- Para 3 - why he lied (honest) -->
+            <div class="blur-text blur-text--2 mt-10" data-effect-2>
+                The truth is, I lied because I was scared. I was scared you would think less of me. I thought if you knew I had never been with anyone, you would see me as someone inexperienced, someone not good enough for you. So I said something that was not true to sound more "normal." And that was the stupidest, most cowardly thing I could have done.
+            </div>
+
+            <!-- Para 4 - what the lie really cost -->
+            <div class="blur-text blur-text--2 mt-10" data-effect-2>
+                Because of that one lie, you spent months overthinking something that never even happened. You were hurting over a fake past I invented. Every single time your mind went to that place and you felt bad, that was because of me. That is not okay. That is not what someone who loves you does.
+            </div>
+
+            <!-- Teddy giving flower -->
+            <div class="mt-10 mb-5 flex flex-col items-center justify-center">
+                <img src="assests/teddy-giving-flower.gif" alt="teddy giving flower" class="rounded-xl w-48 h-48" onclick="flowerClick()">
+            </div>
+            <p class="gif-caption">i want to give you honesty from now on, not just flowers</p>
+
+            <!-- Para 5 - the real truth + why it matters -->
+            <div class="blur-text blur-text--2 mt-10" data-effect-2>
+                You know now that I have never touched anyone. You are it for me. You were always it. And I was so afraid of that being a bad thing that I hid it for over a year instead of just saying it. It was never something to be ashamed of. I see that now. I just wish I had seen it a year ago so you never had to spend a single night overthinking something that never happened.
+            </div>
+
+            <!-- Para 6 - LDR specific, her reaction -->
+            <div class="blur-text blur-text--2 mt-10" data-effect-2>
+                I know you are all the way in Gurugram and I am here, and we cannot just meet and fix things with a hug. We have to fix things with words, with patience, with trust. And I know I broke some of that trust. I am not asking you to forget what happened. I am asking you for the chance to rebuild it, slowly, with honesty this time.
+            </div>
+
+            <!-- Notice me gif -->
+            <div class="mt-10 mb-5 flex flex-col items-center justify-center">
+                <img src="assests/notice-me.gif" alt="notice me" class="rounded-xl w-48 h-48" onclick="noticeClick()">
+            </div>
+            <p class="gif-caption">notice me, please... 🥺</p>
+
+            <!-- Para 7 - the things she withheld -->
+            <div class="blur-text blur-text--2 mt-10" data-effect-2>
+                I know you said no kisses, no hugs, no images, no videos, no laughing until I truly apologize. That honestly broke my heart a little. Because those little things from you are my whole day. But I understand. You needed to know that I actually meant it. So here I am, meaning it.
+            </div>
+
+            <!-- Para 8 - what he promises -->
+            <div class="blur-text blur-text--2 mt-10" data-effect-2>
+                No more lies. Not even small ones, not even the kind I tell myself are harmless. You deserve a version of me who is fully honest, even when it feels embarrassing, even when I am scared of what you will think. I would rather you know the real me and decide, than love a version of me I made up.
+            </div>
+
+            <!-- Teddy hug gif -->
+            <div class="mt-10 mb-5 flex flex-col items-center justify-center">
+                <img src="assests/teddy-hug.gif" alt="teddy hug" class="rounded-xl w-48 h-48" onclick="hugClick()">
+            </div>
+            <p class="gif-caption">if i could teleport to Gurugram right now just for one hug...</p>
+
+            <!-- Para 9 - closing -->
+            <div class="blur-text blur-text--2 mt-10" data-effect-2>
+                Anu, I love you. Genuinely, fully, without any made-up story around it. You are the person I want to talk to every day, the person I want to be better for. Please forgive me. And when you do, I will spend however long it takes to actually deserve that forgiveness.
+            </div>
+
+            <!-- Gift gif -->
+            <div class="mt-10 mb-5 flex flex-col items-center justify-center">
+                <img src="assests/gift.gif" alt="gift" class="rounded-xl w-40 h-40" onclick="giftClick()">
+            </div>
+            <p class="gif-caption">my whole heart, wrapped up for you</p>
+
+            <!-- Signature -->
+            <div class="signature">
+                With all my love,<br>
+                Your Bhondu who is very sorry ❤️
+            </div>
+
+        </div>
+    </section>
+
+    <audio id="bgmMusic" src="assests/bgm.mp3?v=tu-aisa-kaise-hai" loop></audio>
+
+    <script>
+        var bgFill   = document.getElementById("bgFill");
+        var bgmMusic = document.getElementById("bgmMusic");
+
+        function startLetter() {
+            bgFill.style.height = '50vh';
+            bgmMusic.play().catch(function() {});
+            setTimeout(function () {
+                document.getElementById('section2').scrollIntoView({ behavior: 'smooth' });
+            }, 600);
+            spawnHearts();
+        }
+
+        window.addEventListener('load', function () {
+            window.scrollTo(0, 0);
+        });
+
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
+        window.addEventListener('scroll', function () {
+            bgFill.style.backgroundColor = '#FF6B8A';
+        });
+
+        function spawnHearts() {
+            var container = document.getElementById('floating-hearts');
+            var emojis = ['💕', '💗', '💖', '💝', '🌸', '💓'];
+            for (var i = 0; i < 8; i++) {
+                (function(idx) {
+                    setTimeout(function() {
+                        var span = document.createElement('span');
+                        span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                        span.style.left = (10 + Math.random() * 80) + 'vw';
+                        span.style.animationDelay = (Math.random() * 0.5) + 's';
+                        container.appendChild(span);
+                        setTimeout(function() { span.remove(); }, 2500);
+                    }, idx * 150);
+                })(i);
+            }
+        }
+
+        function sadTeddyClick() {
+            alert("yeah... this is how guilty i feel 😔");
+        }
+
+        function teddyClick() {
+            alert("i kept avoiding the truth for too long. not anymore.");
+        }
+
+        function flowerClick() {
+            alert("i wish i could hand you this in person 🌸");
+            spawnHearts();
+        }
+
+        function noticeClick() {
+            alert("Anu please... 🥺 i miss you so much");
+        }
+
+        function hugClick() {
+            alert("one day, in person, for real. i promise. 💞");
+            spawnHearts();
+        }
+
+        function giftClick() {
+            alert("no more lies. only me, real and honest. that's the gift 💝");
+            spawnHearts();
+        }
+    </script>
+
+    <script src="js/gsap.min.js"></script>
+    <script src="js/ScrollTrigger.min.js"></script>
+    <script src="js/split-type.min.js"></script>
+    <script src="js/lenis.min.js"></script>
+    <script src="js/smoothscroll.js"></script>
+    <script type="module" src="js/index.js"></script>
+
+</body>
+
+</html>
